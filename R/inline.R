@@ -1,0 +1,65 @@
+## Copyright (C) 2017 - 2018  Dirk Eddelbuettel
+##
+## This file is part of RcppMLPACK.
+##
+## RcppMLPACK is free software: you can redistribute it and/or modify it
+## under the terms of the GNU General Public License as published by
+## the Free Software Foundation, either version 2 of the License, or
+## (at your option) any later version.
+##
+## RcppMLPACK is distributed in the hope that it will be useful, but
+## WITHOUT ANY WARRANTY; without even the implied warranty of
+## MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+## GNU General Public License for more details.
+##
+## You should have received a copy of the GNU General Public License
+## along with RcppMLPACK.  If not, see <http://www.gnu.org/licenses/>.
+
+.pkgglobalenv <- new.env(parent=emptyenv())
+
+.onLoad <- function(libname, pkgname) {
+
+    if (.Platform$OS.type=="windows") {
+        LIB_MLPACK <- Sys.getenv("LIB_MLPACK")
+        mlpack_cflags <- sprintf("-I%s/include", LIB_MLPACK)
+        ## FIXME
+        mlpack_libs   <- sprintf("-L%s/lib %s %s",
+                                 LIB_MLPACK, # directory, plus two [fixed] library strings
+                                 "-lrt -larmadillo -lboost_program_options",
+                                 "boost_unit_test_framework -lboost_serialization -lmlpack")
+    } else {
+        mlpack_cflags <- "-I/home/asus/mlpack/build/deps/stb -I/home/asus/mlpack/build/deps/ensmallen-2.11.5/include -I/usr/local/include/"
+        mlpack_libs <- "-L/usr/local/lib/ -larmadillo -lboost_program_options -lboost_unit_test_framework -lboost_serialization -lmlpack"
+    }
+
+    assign("mlpack_cflags", mlpack_cflags, envir=.pkgglobalenv)
+    assign("mlpack_libs", mlpack_libs, envir=.pkgglobalenv)
+}
+
+LdFlags <- function(print = TRUE) {
+    if (print) cat(.pkgglobalenv$mlpack_libs) else .pkgglobalenv$mlpack_libs
+}
+
+CFlags <- function(print = TRUE) {
+    if (print) cat(.pkgglobalenv$mlpack_cflags) else .pkgglobalenv$mlpack_cflags
+}
+
+
+inlineCxxPlugin <- function(...) {
+    plugin <- Rcpp::Rcpp.plugin.maker(
+        ## TODO: reflect $(pkg-config --cflags mlpack) as well?
+        include.before = "#include <RcppMLPACK.h>",
+        libs           = sprintf("%s $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS)",
+                                 "-L/usr/local/lib/ -larmadillo -lboost_program_options -lboost_unit_test_framework -lboost_serialization -lmlpack $(SHLIB_OPENMP_CXXFLAGS)"),
+        LinkingTo      = c("RcppArmadillo", "Rcpp", "BH", "RcppMLPACK"),
+        package        = "RcppMLPACK"
+    )
+    settings <- plugin()
+    settings$env$PKG_CPPFLAGS <- "-I/home/asus/mlpack/build/deps/stb -I/home/asus/mlpack/build/deps/ensmallen-2.11.5/include -I/usr/local/include/ $(SHLIB_OPENMP_CXXFLAGS)"
+    settings$configure <- readLines(system.file("skeleton", "configure", package="RcppMLPACK"))
+    settings$configure.win <- readLines(system.file("skeleton", "configure.win",
+                                                    package="RcppMLPACK"))
+    settings$Makevars.in <- readLines(system.file("skeleton", "Makevars.in",
+                                                  package = "RcppMLPACK"))
+    settings
+}

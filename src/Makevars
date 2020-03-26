@@ -1,0 +1,4 @@
+CXX_STD = CXX11
+
+PKG_CXXFLAGS = -I. -I../inst/include -I/home/asus/mlpack/build/deps/stb -I/home/asus/mlpack/build/deps/ensmallen-2.11.5/include -I/usr/local/include/ $(SHLIB_OPENMP_CXXFLAGS)
+PKG_LIBS= -L/usr/local/lib/ -larmadillo -lboost_program_options -lboost_unit_test_framework -lboost_serialization -lmlpack $(LAPACK_LIBS) $(BLAS_LIBS) $(FLIBS) $(SHLIB_OPENMP_CXXFLAGS)
