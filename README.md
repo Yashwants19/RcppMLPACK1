@@ -32,7 +32,7 @@ library(RcppMLPACK)
 
 ```r
 library(RcppMLPACK)
- help(testRBinding)
+help(testRBinding)
 ```
 
 ## For Testing:
