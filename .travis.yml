@@ -11,3 +11,7 @@ matrix:
           - sourceline: 'ppa:edd/misc'
         packages:
           - libmlpack-dev
+          - libarmadillo-dev
+          - libboost-program-options-dev
+          - libboost-serialization-dev
+          - libboost-test-dev
