@@ -8,6 +8,6 @@ matrix:
     addons:
       apt:
         sources:
-          - sourceline: 'ppa:ubuntugis/ppa'
+          - sourceline: 'ppa:edd/misc'
         packages:
-          - libmlpack-dev=3.0.4-1 -V
+          - libmlpack-dev
