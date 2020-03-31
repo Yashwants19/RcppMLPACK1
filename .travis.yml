@@ -6,14 +6,7 @@ cache: packages
 matrix:
   include:
     - dist: xenial # up-to-date 3.4 branch
-      addons:
-        apt:
-          update: true
-          sources:
-            - sourceline: 'ppa:ubuntugis/ppa'
-          packages:
-            - libmlpack-dev
-            - libarmadillo-dev
-            - libboost-program-options-dev
-            - libboost-serialization-dev
-            - libboost-test-dev
+    before_install:
+      - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
+      - sudo apt-get --yes --force-yes update -qq
+      - make install
