@@ -2,12 +2,12 @@
 
 language: R
 cache: packages
-sudo: true
-dist: xenial
 
 matrix:
   include:
     before_install:
       - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
       - sudo apt-get --yes --force-yes update -qq
+      - curl https://ftp.fau.de/macports/distfiles/armadillo/armadillo-8.400.0.tar.xz | tar -xvJ && cd armadillo*
+      - cmake . && make && sudo make install && cd ..
       - make install

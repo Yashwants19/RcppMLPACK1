@@ -1,8 +1,6 @@
 .ONESHELL:
 .PHONY:deps download build clean
 
-GOVERSION?=1.13.1
-
 TMP_DIR?=/tmp/
 
 RPMS=cmake curl git unzip boost-devel boost-test boost-program-options boost-math armadillo-devel binutils-devel
