@@ -3,8 +3,8 @@
 
 TMP_DIR?=/tmp/
 
-RPMS=cmake curl git unzip boost-devel boost-test boost-program-options boost-math armadillo-devel binutils-devel
-DEBS=unzip build-essential cmake curl git pkg-config libboost-math-dev libboost-program-options-dev libboost-test-dev libboost-serialization-dev libarmadillo-dev binutils-dev
+RPMS=cmake curl git unzip boost-devel boost-test boost-program-options boost-math binutils-devel
+DEBS=unzip build-essential cmake curl git pkg-config libboost-math-dev libboost-program-options-dev libboost-test-dev libboost-serialization-dev binutils-dev
 
 distro_deps=
 ifneq ($(shell which dnf 2>/dev/null),)
