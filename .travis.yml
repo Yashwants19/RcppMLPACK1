@@ -5,9 +5,10 @@ cache: packages
 
 matrix:
   include:
-      - dist: focal
+    - dist: xenial # up-to-date 3.4 branch
       addons:
         apt:
+          update: true
           sources:
             - sourceline: 'ppa:ubuntugis/ppa'
           packages:
