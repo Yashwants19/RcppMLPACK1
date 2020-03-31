@@ -3,7 +3,7 @@
 language: R
 cache: packages
 sudo: true
-dist: trusty
+dist: xenial
 
 matrix:
   include:
