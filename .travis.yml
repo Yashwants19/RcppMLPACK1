@@ -8,6 +8,8 @@ matrix:
       - dist: focal
       addons:
         apt:
+          sources:
+            - sourceline: 'ppa:ubuntugis/ppa'
           packages:
             - libmlpack-dev
             - libarmadillo-dev
