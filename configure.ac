@@ -5,7 +5,7 @@
 # require at least autoconf 2.61
 AC_PREREQ(2.61)
 
-AC_INIT([rcppmlpack], [3.0.1-1], [edd@debian.org])
+AC_INIT([rcppmlpack], [3.2.2], [edd@debian.org])
 
 ## Set R_HOME, respecting an environment variable if one is set
 : ${R_HOME=$(R RHOME)}
@@ -34,7 +34,7 @@ AC_PROG_PKGCONFIG
 # PKG_CHECK_MODULES([MLPACK], [mlpack = 2.1.0])
 
 ## So do it manually
-if test x"${PKGCONFIG}" == x"yes" && pkg-config --atleast-version=2.1.0 mlpack; then
+if test x"${PKGCONFIG}" == x"yes" && pkg-config --atleast-version=3.2.2 mlpack; then
    MLPACK_CFLAGS=`pkg-config --cflags mlpack`
    MLPACK_LIBS=`pkg-config --libs mlpack`
 else

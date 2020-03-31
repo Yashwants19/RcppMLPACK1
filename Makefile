@@ -22,14 +22,14 @@ endif
 deps: $(distro_deps)
 
 deps_rh_centos:
-	sudo yum -y install pkgconfig $(RPMS)
+	sudo -S yum -y install pkgconfig $(RPMS)
 
 deps_fedora:
-	sudo dnf -y install pkgconf-pkg-config $(RPMS)
+	sudo -S dnf -y install pkgconf-pkg-config $(RPMS)
 
 deps_debian:
-	sudo apt-get -y update
-	sudo apt-get -y install $(DEBS)
+	sudo -S apt-get -y update
+	sudo -S apt-get -y install $(DEBS)
 
 
 download:
@@ -57,6 +57,6 @@ install: deps download build sudo_install clean
 
 sudo_install:
 	cd $(TMP_DIR)mlpack/mlpack-go-bindings/build
-	sudo $(MAKE) install
-	sudo ldconfig
+	sudo -S $(MAKE) install
+	sudo -S ldconfig
 	cd -
