@@ -4304,13 +4304,18 @@ else
 $as_echo "no" >&6; }
 fi
 
+
+## Install MLPACK
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: Installing mlpack" >&5
+$as_echo_n "Installing mlpack... " >&6; }
 make install
 
 # The following line _should_ work but bombs on Ubuntu 16.04
-# PKG_CHECK_MODULES([MLPACK], [mlpack = 2.1.0])
+# PKG_CHECK_MODULES([MLPACK], [mlpack = 3.2.2])
 
 ## So do it manually
-if test x"${PKGCONFIG}" == x"yes" && pkg-config --atleast-version=2.1.0 mlpack; then
+if test x"${PKGCONFIG}" == x"yes" && pkg-config --atleast-version=3.2.2 mlpack; then
    MLPACK_CFLAGS=`pkg-config --cflags mlpack`
    MLPACK_LIBS=`pkg-config --libs mlpack`
 else
@@ -5017,8 +5022,8 @@ $as_echo_n "checking whether g++ version is sufficient... " >&6; }
         1.*|2.*|3.*|4.0.*|4.1.*|4.2.*|4.3.*|4.4.*|4.5.*|4.6.*|4.7.0|4.7.1)
              { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
 $as_echo "no" >&6; }
-             { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Only g++ version 4.7.2 or greater can be used with RcppMLPACK2." >&5
-$as_echo "$as_me: WARNING: Only g++ version 4.7.2 or greater can be used with RcppMLPACK2." >&2;}
+             { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: Only g++ version 4.7.2 or greater can be used with RcppMLPACK." >&5
+$as_echo "$as_me: WARNING: Only g++ version 4.7.2 or greater can be used with RcppMLPACK." >&2;}
              as_fn_error $? "Please use a different compiler." "$LINENO" 5
         ;;
         4.7.*|4.8.*|4.9.*|5.0*|5.1*|5.2*|5.3*)
