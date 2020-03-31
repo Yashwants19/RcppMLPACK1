@@ -2,6 +2,7 @@
 
 language: R
 cache: packages
+warnings_are_errors: false
 
 matrix:
   include:
@@ -9,3 +10,4 @@ matrix:
       - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
       - sudo -E apt-add-repository -y "ppa:edd/misc"
       - sudo apt-get --yes --force-yes update -qq
+      - make install

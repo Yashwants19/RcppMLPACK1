@@ -4304,13 +4304,6 @@ else
 $as_echo "no" >&6; }
 fi
 
-
-## Install MLPACK
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: Installing mlpack" >&5
-$as_echo_n "Installing mlpack... " >&6; }
-make install
-
 # The following line _should_ work but bombs on Ubuntu 16.04
 # PKG_CHECK_MODULES([MLPACK], [mlpack = 3.2.2])
 
