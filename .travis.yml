@@ -8,6 +8,6 @@ matrix:
     addons:
       apt:
         sources:
-          - sourceline: 'ppa:ubuntugis/ppa'
+          - sourceline: 'ppa:ubuntugis/ubuntugis-unstable'
         packages:
           - libmlpack-dev
