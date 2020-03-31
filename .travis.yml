@@ -8,7 +8,7 @@ matrix:
     addons:
       apt:
         sources:
-          - sourceline: 'ppa:edd/misc'
+          - sourceline: 'https://launchpad.net/ubuntu/focal/+source/mlpack'
         packages:
           - libmlpack-dev
           - libarmadillo-dev
