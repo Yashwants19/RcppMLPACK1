@@ -5,13 +5,12 @@ cache: packages
 
 matrix:
   include:
-    addons:
-      apt:
-        sources:
-          - sourceline: 'https://launchpad.net/ubuntu/focal/+source/mlpack'
-        packages:
-          - libmlpack-dev
-          - libarmadillo-dev
-          - libboost-program-options-dev
-          - libboost-serialization-dev
-          - libboost-test-dev
+      - dist: focal
+      addons:
+        apt:
+          packages:
+            - libmlpack-dev
+            - libarmadillo-dev
+            - libboost-program-options-dev
+            - libboost-serialization-dev
+            - libboost-test-dev
